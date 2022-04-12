@@ -1,44 +1,12 @@
- pipeline {
-  agent any
-  
+pipeline {
   agent {
     docker { image 'node:16-alpine' }
   }
   stages {
-      stage('Test') {
-        steps {
-            sh 'node --version'
-      }
-
-    stage('Stage 1') {
+    stage('Test') {
       steps {
-        script {
-          echo 'This whole pipeline will take 10sec to finish.'
-        }
+        sh 'node --version'
       }
     }
-
-    stage('Parallel stages') {
-      parallel {
-
-        stage('Stage 2') {
-          steps {
-            script {
-              sh 'sleep 10'
-            }
-          }
-        }
-
-        stage('Stage 3') {
-          steps {
-            script {
-              sh 'sleep 10'
-            }
-          }
-        }
-
-      }
-    }
-
   }
 }
